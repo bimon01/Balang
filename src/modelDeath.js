@@ -1,4 +1,5 @@
-import z from 'zod'
+import z from "zod";
+import { format } from "date-fns";
 
 // model Death {
 //   id           String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -11,12 +12,12 @@ import z from 'zod'
 //   member       Member? @relation(fields: [memberId], references: [id])
 // }
 
-
 export const DeathModel = z.object({
   id: z.string().optional(),
-  memberId: z.string(),
+  memberId: z.string().optional(),
   kyrteng: z.string(),
-  balangId: z.string(),
+  balangId: z.string().optional(),
   tarikSngiIap: z.string(),
-  tarikUnTep: z.string(), 
+  tarikUnTep: z.string(),
+  dateCreated: z.string().optional().default(format(new Date(), "yyyy-MM-dd")),
 })
